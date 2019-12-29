@@ -1,6 +1,6 @@
 # Interactive-English-Dictionary-For-Django-Website
 
-the is aapp which can be directly attached to your django website
+this app can be directly attached to your django website
 
 you need to follow the below instructions in order to use this
 
