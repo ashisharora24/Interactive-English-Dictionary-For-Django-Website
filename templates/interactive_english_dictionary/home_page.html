@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+
+<div class="jumbotron text-center">
+  <h1>This is Interactive English Dictionary</h1>
+  <p>This is Interactive English Dictionary...</p>
+</div>
+
+<div class="container">
+  {% if meaning %}
+  <div class="row">
+    <div class="col-sm-12">
+      <h3>meaning of <u>{{word|title}}</u></h3>
+      {% for mean in meaning %}
+      <li>{{mean}}</li>
+      {% endfor %}
+
+    </div>
+  </div>
+  {% endif %}
+
+
+  {% if suggested_word %}
+  <hr>
+  <div class="row">
+    <div class="col-sm-12">
+      <h3>We didnt find <u>{{word|title}}</u> in our dictionary, but we found some similar words</h3>
+  {% for suggested_words in suggested_word %}
+  <li><a href='word/{{suggested_words}}/'>{{suggested_words}}</a></li>
+  {% endfor %}
+</div>
+</div>
+
+  {% endif %}
+
+  {% if no_words %}
+  <hr>
+  <div class="row">
+    <div class="col-sm-12">
+      <h3>Sorry, we didnt find <u>{{word|title}}</u> in our dictionary</h3>
+    </div>
+    </div>
+  {% endif %}
+<hr>
+  <div class="row">
+    <div class="col-sm-12">
+      <h3>Please enter the word for which you would like to get the meaning:</br></h3>
+      <form method='POST' action=".">
+        {% csrf_token %}
+        {{ form.as_p}}
+        <button type="submit">submit</button>
+      </form>
+    </div>
+    </div>
+
+
+</div>
+<!--
+
+Please enter the word for which you would like to get the meaning:</br>
+<form method='POST' action=".">
+  {% csrf_token %}
+  {{ form.as_p}}
+  <button type="submit">submit</button>
+</form> -->
+{% endblock %}
